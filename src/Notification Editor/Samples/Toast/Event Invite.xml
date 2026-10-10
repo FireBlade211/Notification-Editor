@@ -1,0 +1,31 @@
+﻿<toast launch="action=viewEvent&amp;eventId=63851">
+  
+  <visual>
+    <binding template="ToastGeneric">
+      <text>Surface Launch Party</text>
+      <text>Studio S / Ballroom</text>
+      <text>4:00 PM, 10/26/2015</text>
+    </binding>
+  </visual>
+
+  <actions>
+    
+    <input id="status" type="selection" defaultInput="yes">
+      <selection id="yes" content="Going"/>
+      <selection id="maybe" content="Maybe"/>
+      <selection id="no" content="Decline"/>
+    </input>
+
+    <action
+      activationType="background"
+      arguments="action=rsvpEvent&amp;eventId=63851"
+      content="RSVP"/>
+
+    <action
+      activationType="system"
+      arguments="dismiss"
+      content=""/>
+    
+  </actions>
+  
+</toast>

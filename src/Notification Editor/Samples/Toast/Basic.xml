@@ -1,0 +1,10 @@
+﻿<toast>
+  
+  <visual>
+    <binding template="ToastGeneric">
+      <text>Hello World</text>
+      <text>This is a simple toast message</text>
+    </binding>
+  </visual>
+  
+</toast>

@@ -1,0 +1,65 @@
+﻿<tile>
+  <visual>
+
+    <binding template="TileMedium" branding="logo">
+      <group>
+        <subgroup>
+          <text hint-style="caption">Jennifer Parker</text>
+          <text hint-style="captionSubtle">Photos from our trip</text>
+          <text hint-style="captionSubtle">Check out these awesome photos I took while in New Zealand!</text>
+        </subgroup>
+      </group>
+
+      <text />
+
+      <group>
+        <subgroup>
+          <text hint-style="caption">Steve Bosniak</text>
+          <text hint-style="captionSubtle">Build 2015 Dinner</text>
+          <text hint-style="captionSubtle">Want to go out for dinner after Build tonight?</text>
+        </subgroup>
+      </group>
+    </binding>
+
+    <binding template="TileWide" branding="nameAndLogo">
+      <group>
+        <subgroup>
+          <text hint-style="subtitle">Jennifer Parker</text>
+          <text hint-style="captionSubtle">Photos from our trip</text>
+          <text hint-style="captionSubtle">Check out these awesome photos I took while in New Zealand!</text>
+        </subgroup>
+      </group>
+
+      <text />
+
+      <group>
+        <subgroup>
+          <text hint-style="subtitle">Steve Bosniak</text>
+          <text hint-style="captionSubtle">Build 2015 Dinner</text>
+          <text hint-style="captionSubtle">Want to go out for dinner after Build tonight?</text>
+        </subgroup>
+      </group>
+    </binding>
+
+    <binding template="TileLarge" branding="nameAndLogo">
+      <group>
+        <subgroup>
+          <text hint-style="subtitle">Jennifer Parker</text>
+          <text hint-style="captionSubtle">Photos from our trip</text>
+          <text hint-style="captionSubtle">Check out these awesome photos I took while in New Zealand!</text>
+        </subgroup>
+      </group>
+
+      <text />
+
+      <group>
+        <subgroup>
+          <text hint-style="subtitle">Steve Bosniak</text>
+          <text hint-style="captionSubtle">Build 2015 Dinner</text>
+          <text hint-style="captionSubtle">Want to go out for dinner after Build tonight?</text>
+        </subgroup>
+      </group>
+    </binding>
+
+  </visual>
+</tile>

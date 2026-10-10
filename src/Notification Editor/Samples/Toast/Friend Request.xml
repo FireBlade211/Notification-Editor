@@ -1,0 +1,16 @@
+﻿<toast launch="action=viewFriendRequest&amp;userId=49183">
+
+  <visual>
+    <binding template="ToastGeneric">
+      <text>Matt sent you a friend request</text>
+      <text>Hey, wanna dress up as wizards and ride around on our hoverboards together?</text>
+      <image placement="appLogoOverride" hint-crop="circle" src="https://unsplash.it/64?image=1005"/>
+    </binding>
+  </visual>
+
+  <actions>
+    <action content="Accept" activationType="background" arguments="action=acceptFriendRequest&amp;userId=49183"/>
+    <action content="Decline" activationType="background" arguments="action=declineFriendRequest&amp;userId=49183"/>
+  </actions>
+
+</toast>

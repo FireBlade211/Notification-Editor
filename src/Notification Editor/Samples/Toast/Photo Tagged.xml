@@ -1,0 +1,25 @@
+﻿<toast launch="action=viewPhoto&amp;photoId=92187">
+
+  <visual>
+    <binding template="ToastGeneric">
+      <image placement="appLogoOverride" hint-crop="circle" src="https://unsplash.it/64?image=669"/>
+      <text>Adam Wilson tagged you in a photo</text>
+      <text>On top of McClellan Butte - with Andrew Bares</text>
+      <image src="https://unsplash.it/360/202?image=883"/>
+    </binding>
+  </visual>
+
+  <actions>
+
+    <action
+      content="Like"
+      activationType="background"
+      arguments="likePhoto&amp;photoId=92187"/>
+    
+    <action
+      content="Comment"
+      arguments="action=commentPhoto&amp;photoId=92187"/>
+    
+  </actions>
+
+</toast>

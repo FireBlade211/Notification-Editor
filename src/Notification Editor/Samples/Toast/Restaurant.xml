@@ -1,0 +1,34 @@
+﻿<toast launch="action=viewRestaurant&amp;restaurantId=92187">
+
+    <visual>
+        <binding template="ToastGeneric">
+            <image placement="hero" src="Assets/Apps/Food/Food1.jpg"/>
+            <text hint-maxLines="1">New suggested restaurant</text>
+            <text>There's a popular chinese restaurant near you that we think you'd like!</text>
+            <image src="Assets/Apps/Food/RestaurantMap.jpg"/>
+            <group>
+                <subgroup>
+                    <text hint-style="body">Pho Licious</text>
+                    <text hint-style="captionSubtle">4.6 stars</text>
+                </subgroup>
+                <subgroup hint-textStacking="bottom">
+                    <text hint-style="captionSubtle" hint-wrap="true" hint-align="right">4018 148th Ave NE, Redmond, WA 98052</text>
+                </subgroup>
+            </group>
+        </binding>
+    </visual>
+
+    <actions>
+
+        <action
+          content="Map"
+          arguments="bingmaps:?q=4018 148th Ave NE, Redmond, WA 98052"
+          activationType="protocol"/>
+
+        <action
+          content="Reviews"
+          arguments="action=viewRestaurantReviews&amp;restaurantId=92187"/>
+
+    </actions>
+
+</toast>

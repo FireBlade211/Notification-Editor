@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{4C0535D2-ABE7-4ED8-AE0A-C82306FFDA10}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FireBlade.NotificationEditor</RootNamespace>
+    <AssemblyName>Notification Editor</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <PackageCertificateKeyFile>Notification Editor_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <OutputPath>bin\ARM64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColorBox.xaml.cs">
+      <DependentUpon>ColorBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CommitSlider.cs" />
+    <Compile Include="DataModel\AdaptiveElement.cs" />
+    <Compile Include="DataModel\AdaptiveGroup.cs" />
+    <Compile Include="DataModel\AdaptiveImage.cs" />
+    <Compile Include="DataModel\AdaptiveSubgroup.cs" />
+    <Compile Include="DataModel\AdaptiveText.cs" />
+    <Compile Include="DataModel\NotificationDataItem.cs" />
+    <Compile Include="DataModel\ParseWarning.cs" />
+    <Compile Include="DataModel\TileBinding.cs" />
+    <Compile Include="DataModel\ToastAction.cs" />
+    <Compile Include="DataModel\ToastElement.cs" />
+    <Compile Include="DataModel\ToastImage.cs" />
+    <Compile Include="DataModel\ToastInput.cs" />
+    <Compile Include="DataModel\ToastProgress.cs" />
+    <Compile Include="DataModel\ToastSelection.cs" />
+    <Compile Include="DataModel\ToastText.cs" />
+    <Compile Include="Dialogs\ImageBrowserDialog.xaml.cs">
+      <DependentUpon>ImageBrowserDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CollectionHelper.cs" />
+    <Compile Include="Helpers\ColorJsonConverter.cs" />
+    <Compile Include="Helpers\MRUHelper.cs" />
+    <Compile Include="Helpers\SettingsHelper.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Helpers\XmlDocumentHelper.cs" />
+    <Compile Include="INotificationEditorPage.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Markup\AdaptiveElementTemplateSelector.cs" />
+    <Compile Include="Markup\BoolNegationConverter.cs" />
+    <Compile Include="Markup\BoolToVisibilityConverter.cs" />
+    <Compile Include="Markup\DoubleToTileDensityConverter.cs" />
+    <Compile Include="Markup\GroupNameConverter.cs" />
+    <Compile Include="Markup\StringBoolConverter.cs" />
+    <Compile Include="Markup\StringButtonStyleConverter.cs" />
+    <Compile Include="Markup\StringToIntConverter.cs" />
+    <Compile Include="Markup\ToastElementTemplateSelector.cs" />
+    <Compile Include="Markup\TypeConfirmConverter.cs" />
+    <Compile Include="Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SystemImportPage.xaml.cs">
+      <DependentUpon>SystemImportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TilePage.xaml.cs">
+      <DependentUpon>TilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ToastPage.xaml.cs">
+      <DependentUpon>ToastPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="Notification Editor_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Apps\Alarms\AlarmsMedTile.scale-200.png" />
+    <Content Include="Assets\Apps\Calendar\ActionOpen_Light.png" />
+    <Content Include="Assets\Apps\Calendar\ActionRunningLate_Light.png" />
+    <Content Include="Assets\Apps\Calendar\HxCalendarWideTile.scale-200.png" />
+    <Content Include="Assets\Apps\Calendar\PrimaryIcon_Colored.png" />
+    <Content Include="Assets\Apps\Edge\MicrosoftEdgeSquare150x150.scale-200.png" />
+    <Content Include="Assets\Apps\Food\Food1.jpg" />
+    <Content Include="Assets\Apps\Food\Food2.jpg" />
+    <Content Include="Assets\Apps\Food\Food3.jpg" />
+    <Content Include="Assets\Apps\Food\Food4.jpg" />
+    <Content Include="Assets\Apps\Food\Food5.jpg" />
+    <Content Include="Assets\Apps\Food\Food6.jpg" />
+    <Content Include="Assets\Apps\Food\Food7.jpg" />
+    <Content Include="Assets\Apps\Food\RestaurantMap.JPG" />
+    <Content Include="Assets\Apps\GarageDoor\Garage.png" />
+    <Content Include="Assets\Apps\GarageDoor\GarageDoorClosedTile.png" />
+    <Content Include="Assets\Apps\GarageDoor\GarageDoorIndeterminateTile.png" />
+    <Content Include="Assets\Apps\GarageDoor\GarageDoorOpenTile.png" />
+    <Content Include="Assets\Apps\Hipstame\hipster.jpg" />
+    <Content Include="Assets\Apps\Hipstame\map.jpg" />
+    <Content Include="Assets\Apps\Mail\applogo.png" />
+    <Content Include="Assets\Apps\Mail\ExchangeMediumTile.scale-200.png" />
+    <Content Include="Assets\Apps\Mail\LargeLogo.png" />
+    <Content Include="Assets\Apps\Mail\Logo.png" />
+    <Content Include="Assets\Apps\Mail\OutlookMailMediumTile.scale-200.png" />
+    <Content Include="Assets\Apps\Mail\SmallLogo.png" />
+    <Content Include="Assets\Apps\Mail\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Apps\Mail\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\Apps\Mail\WideLogo.png" />
+    <Content Include="Assets\Apps\Maps\map.jpg" />
+    <Content Include="Assets\Apps\Maps\MapsMedTile.scale-200.png" />
+    <Content Include="Assets\Apps\Maps\TileLogoButton.png" />
+    <Content Include="Assets\Apps\Maps\TileLogoLarge.png" />
+    <Content Include="Assets\Apps\Maps\TileLogoMedium.png" />
+    <Content Include="Assets\Apps\Maps\TileLogoSmall.png" />
+    <Content Include="Assets\Apps\Maps\TileLogoWide.png" />
+    <Content Include="Assets\Apps\Messaging\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Apps\People\PeopleSmallTile.scale-200.png" />
+    <Content Include="Assets\Apps\Phone\BaseMedTile.scale-200.png" />
+    <Content Include="Assets\Apps\Phone\BaseSmallTile.scale-200.png" />
+    <Content Include="Assets\Apps\Photos\PhotosSmallTile.scale-200.png" />
+    <Content Include="Assets\Apps\Store\StoreSmallTile.scale-200.png" />
+    <Content Include="Assets\Apps\Weather\Cloudy-Square.png" />
+    <Content Include="Assets\Apps\Weather\Cloudy.png" />
+    <Content Include="Assets\Apps\Weather\Drizzle-Square.png" />
+    <Content Include="Assets\Apps\Weather\Drizzle.png" />
+    <Content Include="Assets\Apps\Weather\Haze-Square.png" />
+    <Content Include="Assets\Apps\Weather\Haze.png" />
+    <Content Include="Assets\Apps\Weather\Mostly Cloudy-Background.jpg" />
+    <Content Include="Assets\Apps\Weather\Mostly Cloudy-Square.png" />
+    <Content Include="Assets\Apps\Weather\Mostly Cloudy.png" />
+    <Content Include="Assets\Apps\Weather\Originals\Drizzle.png" />
+    <Content Include="Assets\Apps\Weather\Originals\Haze.png" />
+    <Content Include="Assets\Apps\Weather\Originals\Mostly Cloudy.png" />
+    <Content Include="Assets\Apps\Weather\Originals\Slight Drizzle.png" />
+    <Content Include="Assets\Apps\Weather\Originals\Snow.png" />
+    <Content Include="Assets\Apps\Weather\Originals\Sunny.png" />
+    <Content Include="Assets\Apps\Weather\Originals\Thunderstorms.png" />
+    <Content Include="Assets\Apps\Weather\Slight Drizzle-Square.png" />
+    <Content Include="Assets\Apps\Weather\Slight Drizzle.png" />
+    <Content Include="Assets\Apps\Weather\Snow-Square.png" />
+    <Content Include="Assets\Apps\Weather\Snow.png" />
+    <Content Include="Assets\Apps\Weather\Sunny-Square.png" />
+    <Content Include="Assets\Apps\Weather\Sunny.png" />
+    <Content Include="Assets\Apps\Weather\Thunderstorms-Square.png" />
+    <Content Include="Assets\Apps\Weather\Thunderstorms.png" />
+    <Content Include="Assets\Apps\Weather\Originals\Cloudy.png" />
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-125.png" />
+    <Content Include="Assets\BadgeLogo.scale-150.png" />
+    <Content Include="Assets\BadgeLogo.scale-200.png" />
+    <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\Icons\cancel.png" />
+    <Content Include="Assets\Icons\check.png" />
+    <Content Include="Assets\Icons\icons8-Keyboard-50.png" />
+    <Content Include="Assets\Icons\icons8-Mouse-50.png" />
+    <Content Include="Assets\Icons\message.png" />
+    <Content Include="Assets\Icons\reminder.png" />
+    <Content Include="Assets\Icons\send.png" />
+    <Content Include="Assets\Icons\telephone.png" />
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\MDL2\tile.theme-dark.png" />
+    <Content Include="Assets\MDL2\tile.theme-light.png" />
+    <Content Include="Assets\MDL2\toast.theme-dark.png" />
+    <Content Include="Assets\MDL2\toast.theme-light.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Samples\Tile\Calendar.xml" />
+    <Content Include="Samples\Tile\Hipstame.xml" />
+    <Content Include="Samples\Tile\Mail.xml" />
+    <Content Include="Samples\Tile\Maps.xml" />
+    <Content Include="Samples\Tile\Weather.xml" />
+    <Content Include="Samples\Tile\Xbox.xml" />
+    <Content Include="Samples\Toast\Alarm.xml" />
+    <Content Include="Samples\Toast\Basic.xml" />
+    <Content Include="Samples\Toast\Breaking News.xml" />
+    <Content Include="Samples\Toast\Event Invite.xml" />
+    <Content Include="Samples\Toast\Friend Request.xml" />
+    <Content Include="Samples\Toast\Incoming Call.xml" />
+    <Content Include="Samples\Toast\Messaging.xml" />
+    <Content Include="Samples\Toast\Pending Update.xml" />
+    <Content Include="Samples\Toast\Photo Tagged.xml" />
+    <Content Include="Samples\Toast\Progress Bar.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Samples\Toast\Reminder.xml" />
+    <Content Include="Samples\Toast\Restaurant.xml" />
+    <Content Include="Samples\Toast\Weather.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Controls\ColorBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ImageBrowserDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SystemImportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ToastPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.8</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.4</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj">
+      <Project>{220f3a47-bec1-40ef-be2d-98a8345ab983}</Project>
+      <Name>NotificationsVisualizerLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

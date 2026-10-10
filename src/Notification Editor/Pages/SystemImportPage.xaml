@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="FireBlade.NotificationEditor.Pages.SystemImportPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FireBlade.NotificationEditor.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Pivot Title="IMPORT SYSTEM NOTIFICATION">
+        <Pivot.LeftHeader>
+            <Button Style="{StaticResource NavigationBackButtonNormalStyle}" x:Name="backButton" Click="BackButton_Click"/>
+        </Pivot.LeftHeader>
+
+        <!--
+        <PivotItem Header="All">
+            <Grid>
+                <GridView ItemsSource=""
+            </Grid>
+        </PivotItem>
+        -->
+        <PivotItem Header="Toast Notifications">
+            <Grid>
+                <GridView ItemsSource="{x:Bind ToastNotifications,Mode=OneWay}"/>
+            </Grid>
+        </PivotItem>
+        <!-- <PivotItem Header="Live Tiles"/> -->
+    </Pivot>
+</Page>

@@ -1,0 +1,11 @@
+﻿<toast launch="action=viewStory&amp;storyId=92187">
+
+    <visual>
+        <binding template="ToastGeneric">
+            <text>Tortoise beats rabbit in epic race</text>
+            <text>In a surprising turn of events, Rockstar Rabbit took a nasty crash, allowing Thomas the Tortoise to win the race.</text>
+            <text placement="attribution">The Animal Times</text>
+        </binding>
+    </visual>
+
+</toast>

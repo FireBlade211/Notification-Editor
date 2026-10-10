@@ -1,0 +1,38 @@
+﻿<toast launch="action=answer&amp;callId=938163" scenario="incomingCall">
+
+  <visual>
+    <binding template="ToastGeneric">
+      <text>Andrew Bares</text>
+      <text>Incoming Call - Mobile</text>
+      <image hint-crop="circle" src="https://unsplash.it/100?image=883"/>
+    </binding>
+  </visual>
+
+  <actions>
+
+    <action
+      content="Text reply"
+      imageUri="Assets/Icons/message.png"
+      activationType="foreground"
+      arguments="action=textReply&amp;callId=938163"/>
+
+    <action
+      content="Reminder"
+      imageUri="Assets/Icons/reminder.png"
+      activationType="background"
+      arguments="action=reminder&amp;callId=938163"/>
+
+    <action
+      content="Ignore"
+      imageUri="Assets/Icons/cancel.png"
+      activationType="background"
+      arguments="action=ignore&amp;callId=938163"/>
+
+    <action
+      content="Answer"
+      imageUri="Assets/Icons/telephone.png"
+      arguments="action=answer&amp;callId=938163"/>
+
+  </actions>
+
+</toast>

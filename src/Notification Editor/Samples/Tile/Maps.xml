@@ -1,0 +1,25 @@
+﻿<tile>
+  <visual>
+
+    <binding template="TileSmall">
+      <image src="Assets/Apps/Maps/map.jpg" placement="peek" hint-overlay="20"/>
+      <image src="Assets/Apps/Maps/TileLogoSmall.png" placement="background"/>
+    </binding>
+
+    <binding template="TileMedium">
+      <image src="Assets/Apps/Maps/map.jpg" placement="peek" hint-overlay="20"/>
+      <image src="Assets/Apps/Maps/TileLogoMedium.png" placement="background"/>
+    </binding>
+
+    <binding template="TileWide">
+      <image src="Assets/Apps/Maps/map.jpg" placement="peek" hint-overlay="20"/>
+      <image src="Assets/Apps/Maps/TileLogoWide.png" placement="background"/>
+    </binding>
+
+    <binding template="TileLarge">
+      <image src="Assets/Apps/Maps/map.jpg" placement="peek" hint-overlay="20"/>
+      <image src="Assets/Apps/Maps/TileLogoLarge.png" placement="background"/>
+    </binding>
+
+  </visual>
+</tile>

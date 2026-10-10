@@ -1,0 +1,39 @@
+﻿<toast launch="action=viewDownload&amp;downloadId=9438108">
+  
+  <visual>
+    <binding template="ToastGeneric">
+      <text>Downloading this week's new music...</text>
+      <progress
+        title="{progressTitle}"
+        value="{progressValue}"
+        valueStringOverride="{progressValueString}"
+        status="{progressStatus}"/>
+    </binding>
+  </visual>
+
+  <actions>
+
+    <action
+      activationType="background"
+      arguments="action=pauseDownload&amp;downloadId=9438108"
+      content="Pause"/>
+
+    <action
+      activationType="background"
+      arguments="action=cancelDownload&amp;downloadId=9438108"
+      content="Cancel"/>
+    
+  </actions>
+  
+</toast>
+
+<!--NotificationData
+
+{
+  "progressValue": 0.35,
+  "progressTitle": "Katy Perry",
+  "progressValueString": "3/15 songs",
+  "progressStatus": "Downloading..."
+}
+
+-->

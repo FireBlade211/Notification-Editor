@@ -1,0 +1,111 @@
+﻿<tile>
+  <visual displayName="Seattle" baseUri="Assets/Apps/Weather/">
+    <binding template="TileSmall" hint-textStacking="center" hint-overlay="30">
+      <image src="Mostly Cloudy-Background.jpg" placement="background"/>
+      <text hint-style="body" hint-align="center">Mon</text>
+      <text hint-style="base" hint-align="center">63°</text>
+    </binding>
+
+    <binding template="TileMedium" branding="name" hint-overlay="30">
+      <image src="Mostly Cloudy-Background.jpg" placement="background"/>
+      <group>
+        <subgroup>
+          <text hint-align="center">Mon</text>
+          <image src="Mostly Cloudy.png" hint-removeMargin="true"/>
+          <text hint-align="center">63°</text>
+          <text hint-style="captionSubtle" hint-align="center">42°</text>
+        </subgroup>
+        <subgroup>
+          <text hint-align="center">Tue</text>
+          <image src="Cloudy.png" hint-removeMargin="true"/>
+          <text hint-align="center">57°</text>
+          <text hint-style="captionSubtle" hint-align="center">38°</text>
+        </subgroup>
+      </group>
+    </binding>
+
+    <binding template="TileWide" branding="nameAndLogo" hint-overlay="30">
+      <image src="Mostly Cloudy-Background.jpg" placement="background"/>
+      <group>
+        <subgroup hint-weight="1">
+          <text hint-align="center">Mon</text>
+          <image src="Mostly Cloudy.png" hint-removeMargin="true"/>
+          <text hint-align="center">63°</text>
+          <text hint-style="captionSubtle" hint-align="center">42°</text>
+        </subgroup>
+        <subgroup hint-weight="1">
+          <text hint-align="center">Tue</text>
+          <image src="Cloudy.png" hint-removeMargin="true"/>
+          <text hint-align="center">57°</text>
+          <text hint-style="captionSubtle" hint-align="center">38°</text>
+        </subgroup>
+        <subgroup hint-weight="1">
+          <text hint-align="center">Wed</text>
+          <image src="Sunny.png" hint-removeMargin="true"/>
+          <text hint-align="center">59°</text>
+          <text hint-style="captionSubtle" hint-align="center">43°</text>
+        </subgroup>
+        <subgroup hint-weight="1">
+          <text hint-align="center">Thu</text>
+          <image src="Sunny.png" hint-removeMargin="true"/>
+          <text hint-align="center">62°</text>
+          <text hint-style="captionSubtle" hint-align="center">42°</text>
+        </subgroup>
+        <subgroup hint-weight="1">
+          <text hint-align="center">Fri</text>
+          <image src="Sunny.png" hint-removeMargin="true"/>
+          <text hint-align="center">71°</text>
+          <text hint-style="captionSubtle" hint-align="center">66°</text>
+        </subgroup>
+      </group>
+    </binding>
+
+    <binding template="TileLarge" branding="nameAndLogo" hint-overlay="30">
+      <image src="Mostly Cloudy-Background.jpg" placement="background"/>
+      <group>
+        <subgroup hint-weight="30">
+          <image src="Mostly Cloudy-Square.png"/>
+        </subgroup>
+        <subgroup>
+          <text hint-style="base">Monday</text>
+          <text>63° / 42°</text>
+          <text hint-style="captionSubtle">20% chance of rain</text>
+          <text hint-style="captionSubtle">Winds 5 mph NE</text>
+        </subgroup>
+      </group>
+      
+      <text/>
+      
+      <group>
+        <subgroup hint-weight="1">
+          <text hint-align="center">Tue</text>
+          <image src="Cloudy.png"/>
+          <text hint-align="center">57°</text>
+          <text hint-style="captionSubtle" hint-align="center">38°</text>
+        </subgroup>
+        <subgroup hint-weight="1">
+          <text hint-align="center">Wed</text>
+          <image src="Sunny.png"/>
+          <text hint-align="center">59°</text>
+          <text hint-style="captionSubtle" hint-align="center">43°</text>
+        </subgroup>
+        <subgroup hint-weight="1">
+          <text hint-align="center">Thu</text>
+          <image src="Sunny.png"/>
+          <text hint-align="center">62°</text>
+          <text hint-style="captionSubtle" hint-align="center">42°</text>
+        </subgroup>
+        <subgroup hint-weight="1">
+          <text hint-align="center">Fri</text>
+          <image src="Sunny.png"/>
+          <text hint-align="center">71°</text>
+          <text hint-style="captionSubtle" hint-align="center">66°</text>
+        </subgroup>
+      </group>
+    </binding>
+
+
+  </visual>
+</tile>
+
+<!--Weather icons: http://bharathp666.deviantart.com/art/Android-Weather-Icons-180719113  -->

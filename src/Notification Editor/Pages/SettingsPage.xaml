@@ -137,7 +137,7 @@
                             <HyperlinkButton Content="Edit settings file" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0"
                                              x:Name="editFileButton" Click="EditFileButton_Click"/>
                         </Grid>
-                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" Text="Version 1.0" />
+                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" Text="Version 1.0" x:Name="versionBlock" />
 
                         <TextBlock TextWrapping="WrapWholeWords">
                         <Bold>Notification Editor</Bold> is a schema-compliant editor for Windows toast and tile notifications.<LineBreak/><LineBreak/>

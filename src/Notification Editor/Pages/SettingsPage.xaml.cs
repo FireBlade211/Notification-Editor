@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using Windows.ApplicationModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -37,6 +38,8 @@ namespace FireBlade.NotificationEditor.Pages
             
             if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 7))
                 rootGrid.BackgroundTransition = new BrushTransition();
+
+            versionBlock.Text = $"Version {Package.Current.Id.Version.Major}.{Package.Current.Id.Version.Minor}";
 
             InitControls();
             _ = InitImages();

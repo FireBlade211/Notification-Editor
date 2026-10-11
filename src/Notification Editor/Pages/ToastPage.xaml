@@ -575,7 +575,7 @@
                                 </GroupStyle.HeaderTemplate>
 
                                 <GroupStyle.HeaderContainerStyle>
-                                    <Style TargetType="GroupItem">
+                                    <Style TargetType="GridViewHeaderItem">
                                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                                         <Setter Property="HorizontalAlignment" Value="Stretch"/>
                                     </Style>

@@ -25,3 +25,13 @@ Notification Editor is the sequel to my old project, [Notification Designer](Fir
 |Includes notification preview|✅|❌| - |
 |Supports NotificationData (toasts)|✅|❌|Notification data can be used to bind to data on toast notifications. For more info, see the **Data** tab in the *Toast Notification Editor*.|
 |Allows manually editing XML|✅|❌|While the main point of both **Notification Editor** and **Notification Designer** is visually editing toasts, **Notification Editor** allows you to manually edit the XML if you want to.|
+
+## Build Notification Editor
+Sadly I can't give you can easy to install **MSIX** package, because Windows requires the certificate used to be trusted, not self-signed. Because of this, you have to build **Notification Editor** yourself:
+
+1. Clone the repository.
+```pwsh
+git clone https://github.com/FireBlade211/Notification-Editor.git
+```
+2. Open the `Notification Editor.sln` file (under the `src` folder) in **Visual Studio**.
+3. Click `Build` -\> `Build Solution`.

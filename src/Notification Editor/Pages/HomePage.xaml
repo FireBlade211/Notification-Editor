@@ -334,7 +334,7 @@
                                         <Flyout>
                                             <StackPanel MinWidth="180">
                                                 <TextBox Header="Rename this item to:" PlaceholderText="New name..."
-                                                         x:Name="renameBox"/>
+                                                         x:Name="renameBox" Text="{x:Bind Title,Mode=OneWay}"/>
                                                 <Button Content="Save" Style="{StaticResource AccentButtonStyle}" Margin="0,8,0,0"
                                                         x:Name="saveRenameButton" Tag="{x:Bind}" Click="SaveRenameButton_Click"
                                                         MinWidth="80"/>

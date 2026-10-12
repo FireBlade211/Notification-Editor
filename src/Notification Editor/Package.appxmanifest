@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp uap3">
-  <Identity Name="f8d136c6-f7ee-42a7-a002-283245d7d60a" Publisher="CN=FireBlade" Version="1.1.0.0" />
+  <Identity Name="f8d136c6-f7ee-42a7-a002-283245d7d60a" Publisher="CN=FireBlade" Version="1.2.0.0" />
   <mp:PhoneIdentity PhoneProductId="f8d136c6-f7ee-42a7-a002-283245d7d60a" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Notification Editor</DisplayName>
@@ -42,6 +42,15 @@
           </uap:ShareTarget>
         </uap:Extension>
         -->
+        <uap:Extension Category="windows.shareTarget">
+          <uap:ShareTarget Description="Notification XML payload">
+            <uap:SupportedFileTypes>
+              <uap:SupportsAnyFileType/>
+            </uap:SupportedFileTypes>
+            <uap:DataFormat>Text</uap:DataFormat>
+            <uap:DataFormat>StorageItems</uap:DataFormat>
+          </uap:ShareTarget>
+        </uap:Extension>
       </Extensions>
     </Application>
   </Applications>

@@ -40,6 +40,7 @@ namespace FireBlade.NotificationEditor.Pages
                 rootGrid.BackgroundTransition = new BrushTransition();
 
             versionBlock.Text = $"Version {Package.Current.Id.Version.Major}.{Package.Current.Id.Version.Minor}";
+            useAcrylicToggle.IsEnabled = ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5);
 
             InitControls();
             _ = InitImages();
@@ -67,6 +68,8 @@ namespace FireBlade.NotificationEditor.Pages
             showNameOnSmallLogoCheck.IsChecked = SettingsHelper.Current.PreviewSettings.ShowNameOnSquare150x150Logo;
             showNameOnWideLogoCheck.IsChecked  = SettingsHelper.Current.PreviewSettings.ShowNameOnWide310x150Logo;
             showNameOnLargeLogoCheck.IsChecked = SettingsHelper.Current.PreviewSettings.ShowNameOnSquare310x310Logo;
+
+            useAcrylicToggle.IsOn = SettingsHelper.Current.PreviewSettings.ShowAcrylicPaneBackground;
         }
 
         private async Task InitImages()
@@ -309,6 +312,11 @@ namespace FireBlade.NotificationEditor.Pages
         private void ShowNameOnSmallLogoCheck_Checked(object sender, RoutedEventArgs e)
         {
             SettingsHelper.Current.PreviewSettings.ShowNameOnSquare150x150Logo = showNameOnSmallLogoCheck.IsChecked == true;
+        }
+
+        private void useAcrylicToggle_Toggled(object sender, RoutedEventArgs e)
+        {
+            SettingsHelper.Current.PreviewSettings.ShowAcrylicPaneBackground = useAcrylicToggle.IsOn;
         }
     }
 }

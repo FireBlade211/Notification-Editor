@@ -332,6 +332,16 @@ namespace FireBlade.NotificationEditor.Pages
                 });
             }
 
+            if (SettingsHelper.Current.PreviewSettings.ShowAcrylicPaneBackground &&
+                ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
+                previewPane.Background = new AcrylicBrush
+                {
+                    BackgroundSource = AcrylicBackgroundSource.HostBackdrop,
+                    TintColor = (Color)Application.Current.Resources["SystemColorWindowColor"],
+                    TintOpacity = 0.4,
+                    FallbackColor = (Color)Application.Current.Resources["SystemColorWindowColor"]
+                };
+
             InitControls();
         }
 

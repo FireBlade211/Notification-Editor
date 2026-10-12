@@ -25,7 +25,7 @@
         <CollectionViewSource x:Name="adaptiveGroupsCVS" IsSourceGrouped="True" />
     </Page.Resources>
     
-    <Grid Margin="0,0,8,0" x:Name="rootGrid">
+    <Grid x:Name="rootGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
@@ -38,7 +38,7 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
         
-        <Grid Grid.Column="1" Width="376" x:Name="previewPane"
+        <Grid Grid.Column="1" Width="376" x:Name="previewPane" Padding="8,8,8,0"
                     Visibility="{x:Bind showPreviewButton.IsChecked, Mode=OneWay, Converter={StaticResource boolToVisiblityConverter}}">
 
             <Grid.RowDefinitions>

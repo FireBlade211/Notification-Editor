@@ -28,7 +28,7 @@
         </MenuFlyout>
     </Page.Resources>
 
-    <Grid Margin="0,0,8,0">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="266*"/>
             <ColumnDefinition Width="13*"/>
@@ -36,7 +36,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="2" MinWidth="376" Visibility="{x:Bind showPreviewButton.IsChecked, Mode=OneWay, Converter={StaticResource boolToVisiblityConverter}}"
-              HorizontalAlignment="Stretch" Margin="0,8,0,0" VerticalAlignment="Stretch" x:Name="previewPane">
+              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="previewPane" Padding="8,8,8,0">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

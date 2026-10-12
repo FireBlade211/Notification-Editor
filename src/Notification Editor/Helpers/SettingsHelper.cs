@@ -63,6 +63,9 @@ namespace FireBlade.NotificationEditor.Helpers
 
     public class PreviewSettings
     {
+        [JsonProperty("showAcrylicBackground")]
+        public bool ShowAcrylicPaneBackground { get; set; } = true;
+
         [JsonProperty("tileBackground")]
         [JsonConverter(typeof(ColorJsonConverter))]
         public Color LiveTileBackground { get; set; } = Colors.BlueViolet;

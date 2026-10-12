@@ -20,6 +20,7 @@ using System.Linq;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -117,9 +118,6 @@ namespace FireBlade.NotificationEditor.Pages
 
             foreach (var item in MRUHelper.Items)
                 MruItems.Add(item);
-
-            //if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
-            //    buttonsSV.Background = Application.Current.Resources["SystemControlAccentAcrylicWindowAccentMediumHighBrush"] as Brush;
         }
 
         private async void NewItem_Click(object sender, RoutedEventArgs e)

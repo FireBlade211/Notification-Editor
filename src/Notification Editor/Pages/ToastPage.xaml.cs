@@ -1,34 +1,35 @@
-﻿using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using Windows.UI.Xaml;
-using Windows.Data.Xml.Dom;
+﻿using FireBlade.NotificationEditor.DataModel;
+using FireBlade.NotificationEditor.Helpers;
+using Newtonsoft.Json;
 using NotificationsVisualizerLibrary;
-using Windows.ApplicationModel;
-using System;
-using Windows.UI;
-using Windows.System.Profile;
-using System.Linq;
-using Windows.UI.Notifications;
-using Windows.UI.Core;
 using NotificationsVisualizerLibrary.Parsers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using FireBlade.NotificationEditor.Helpers;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.UI.Xaml.Data;
 using System.Globalization;
-using Windows.Graphics.Display;
-using FireBlade.NotificationEditor.DataModel;
-using Windows.Storage;
+using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage.Pickers;
-using Windows.UI.ViewManagement;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Data.Xml.Dom;
 using Windows.Foundation.Metadata;
-using Newtonsoft.Json;
-using Windows.UI.Xaml.Input;
-using Windows.System;
-using Windows.UI.Xaml.Media.Imaging;
+using Windows.Graphics.Display;
+using Windows.Storage;
 using Windows.Storage.AccessCache;
+using Windows.Storage.Pickers;
+using Windows.System;
+using Windows.System.Profile;
+using Windows.UI;
+using Windows.UI.Core;
+using Windows.UI.Notifications;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -312,6 +313,16 @@ namespace FireBlade.NotificationEditor.Pages
                     Modifiers = VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift
                 });
             }
+
+            if (SettingsHelper.Current.PreviewSettings.ShowAcrylicPaneBackground && 
+                ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
+                previewPane.Background = new AcrylicBrush
+                {
+                    BackgroundSource = AcrylicBackgroundSource.HostBackdrop,
+                    TintColor = (Color)Application.Current.Resources["SystemColorWindowColor"],
+                    TintOpacity = 0.4,
+                    FallbackColor = (Color)Application.Current.Resources["SystemColorWindowColor"]
+                };
 
             InitControls();
         }

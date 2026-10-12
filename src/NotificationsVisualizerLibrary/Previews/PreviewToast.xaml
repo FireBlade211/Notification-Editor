@@ -201,33 +201,34 @@
                         Style="{StaticResource CompletelyTransparentButtonStyle}"
                         Grid.Column="2"
                         Click="MoreButton_Click">
-                    <SymbolIcon Symbol="More" RequestedTheme="Dark"
+                    <FontIcon Glyph="&#xE712;" RequestedTheme="Dark"
                         VerticalAlignment="Center"
                         Margin="6,0,0,0"
                         Width="20"
-                        Height="20">
-                        <SymbolIcon.RenderTransform>
+                        Height="20"
+                        FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons">
+                        <FontIcon.RenderTransform>
                             <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
-                        </SymbolIcon.RenderTransform>
-                    </SymbolIcon>
+                        </FontIcon.RenderTransform>
+                    </FontIcon>
                 </Button>
                 
                 <!--Close button-->
                 <Button
                     Style="{StaticResource CompletelyTransparentButtonStyle}"
                     Grid.Column="3">
-                    <SymbolIcon
-                        Symbol="Cancel"
+                    <FontIcon
+                        Glyph="&#xE711;"
                         RequestedTheme="Dark"
                         VerticalAlignment="Center"
                         Margin="6,0,0,0"
                         Width="18"
                         Height="18"
                         Tapped="CloseIcon_Tapped">
-                        <SymbolIcon.RenderTransform>
+                        <FontIcon.RenderTransform>
                             <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
-                        </SymbolIcon.RenderTransform>
-                    </SymbolIcon>
+                        </FontIcon.RenderTransform>
+                    </FontIcon>
                 </Button>
             </Grid>
 

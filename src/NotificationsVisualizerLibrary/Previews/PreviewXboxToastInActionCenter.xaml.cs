@@ -435,7 +435,10 @@ namespace NotificationsVisualizerLibrary
 
                 Title = input.Title;
 
-                Icon = new SymbolIcon(Symbol.Keyboard);
+                Icon = new FontIcon
+                {
+                    Glyph = ((char)Symbol.Keyboard).ToString()
+                };
 
                 Action = ShowPopup;
             }
@@ -530,7 +533,10 @@ namespace NotificationsVisualizerLibrary
 
                 Icon = new Viewbox()
                 {
-                    Child = new SymbolIcon(Symbol.Edit),
+                    Child = new FontIcon
+                    {
+                        Glyph = "\uE70F"
+                    },
                     Height = 15,
                     Width = 15
                 };

@@ -298,7 +298,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8" Grid.ColumnSpan="4">
-                                                <SymbolIcon Symbol="Font"/>
+                                                <FontIcon Glyph="&#xE8D2;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
                                                 <TextBlock Text="Text" Margin="8,0,0,0" Style="{StaticResource BaseTextBlockStyle}"/>
                                             </StackPanel>
 
@@ -343,7 +343,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8" Grid.ColumnSpan="6">
-                                                <SymbolIcon Symbol="Pictures"/>
+                                                <FontIcon Glyph="&#xE8B9;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
                                                 <TextBlock Text="Image" Margin="8,0,0,0" Style="{StaticResource BaseTextBlockStyle}"/>
                                             </StackPanel>
 
@@ -356,8 +356,8 @@
                                             <Button Grid.Row="1" Grid.Column="2" Click="BrowseAssetsButton_Click" VerticalAlignment="Bottom"
                                                     Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Browse assets"
                                                     Height="32">
-                                                
-                                                <FontIcon Glyph="&#xF12B;"/>
+
+                                                <FontIcon Glyph="&#xF12B;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
 
                                                 <Button.Tag>
                                                     <dialogs:ImageBrowserDialog SelectedUri="{x:Bind Src,Mode=TwoWay}" />
@@ -408,7 +408,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                                <FontIcon Glyph="&#xF16A;"/>
+                                                <FontIcon Glyph="&#xF16A;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
                                                 <TextBlock Text="Progress Bar" Margin="8,0,0,0" Style="{StaticResource BaseTextBlockStyle}"/>
                                             </StackPanel>
 
@@ -424,7 +424,7 @@
                                             <Button Margin="8,0,0,0" ToolTipService.ToolTip="Bind to notification data"
                                                     Grid.Row="1" Grid.Column="4" VerticalAlignment="Bottom"
                                                     Style="{x:Bind ValueBind,Mode=OneWay,Converter={StaticResource stringButtonStyleConverter}}">
-                                                <SymbolIcon Symbol="Link"/>
+                                                <FontIcon Glyph="&#xE71B;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
 
                                                 <Button.Flyout>
                                                     <Flyout>
@@ -616,8 +616,8 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <SymbolIcon Symbol="Font" VerticalAlignment="Bottom" Margin="0,0,8,8"
-                                                        ToolTipService.ToolTip="Text"/>
+                                            <FontIcon Glyph="&#xE8D2;" VerticalAlignment="Bottom" Margin="0,0,8,8"
+                                                        ToolTipService.ToolTip="Text" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
 
                                             <TextBox Header="ID" InputScope="Number" Grid.Column="1"
                                                      Text="{x:Bind Id, Mode=TwoWay,Converter={StaticResource stringToIntConverter}}"/>
@@ -702,7 +702,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <FontIcon Glyph="&#xEB9F;" VerticalAlignment="Bottom" Margin="0,0,8,8"
-                                                      ToolTipService.ToolTip="Image"/>
+                                                      ToolTipService.ToolTip="Image" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
                                             
                                             <TextBox Header="ID" InputScope="Number" Grid.Column="1"
                                                      Text="{x:Bind Id, Mode=TwoWay,Converter={StaticResource stringToIntConverter}}"/>
@@ -714,7 +714,7 @@
                                                     Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Browse assets"
                                                     Height="32" Margin="0,0,8,0">
 
-                                                <FontIcon Glyph="&#xF12B;"/>
+                                                <FontIcon Glyph="&#xF12B;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
 
                                                 <Button.Tag>
                                                     <dialogs:ImageBrowserDialog SelectedUri="{x:Bind Src,Mode=TwoWay}" />
@@ -839,7 +839,7 @@
                                             <Button Click="BrowseAssetsButton_Click" VerticalAlignment="Bottom" Height="32" Margin="0,0,8,0"
                                                     Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Browse assets">
 
-                                                <FontIcon Glyph="&#xF12B;"/>
+                                                <FontIcon Glyph="&#xF12B;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
 
                                                 <Button.Tag>
                                                     <dialogs:ImageBrowserDialog SelectedUri="{x:Bind ImageUri,Mode=TwoWay}" />
@@ -960,7 +960,8 @@
                                                 Style="{StaticResource SubtleButtonStyle}" VerticalAlignment="Bottom">
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock Text="Edit selections"/>
-                                                <FontIcon Glyph="&#xE70D;" Margin="8,0,0,0" FontSize="16"/>
+                                                <FontIcon Glyph="&#xE70D;" Margin="8,0,0,0" FontSize="16"
+                                                          FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
                                             </StackPanel>
 
                                             <Button.Flyout>
@@ -1089,7 +1090,7 @@
                                     <Button Style="{StaticResource DeleteButtonStyle}" ToolTipService.ToolTip="Delete" Grid.Column="2"
                                             Margin="8,0,0,0" x:Name="deleteDataItemButton" Click="DeleteDataItemButton_Click"
                                             Tag="{x:Bind}">
-                                        <SymbolIcon Symbol="Delete"/>
+                                        <FontIcon Glyph="&#xE74D;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
                                     </Button> 
                                 </Grid>
                             </DataTemplate>
@@ -1138,7 +1139,7 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <FontIcon Glyph="{x:Bind Glyph}" Margin="0,0,8,0" />
+                                    <FontIcon Glyph="{x:Bind Glyph}" Margin="0,0,8,0" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons" />
                                     <TextBlock Grid.Column="1" Text="{x:Bind Error.Message}" TextWrapping="WrapWholeWords" HorizontalAlignment="Stretch" />
                                     
                                     <TextBlock Grid.Column="2" HorizontalAlignment="Right">

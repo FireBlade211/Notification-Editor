@@ -504,8 +504,8 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <SymbolIcon Symbol="Font" VerticalAlignment="Bottom" Margin="0,0,8,8"
-                                                        ToolTipService.ToolTip="Text"/>
+                                            <FontIcon Glyph="&#xE8D2;" VerticalAlignment="Bottom" Margin="0,0,8,8"
+                                                        ToolTipService.ToolTip="Text" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
 
                                             <TextBox Header="ID" InputScope="Number" Grid.Column="1"
                                                      Text="{x:Bind Id, Mode=TwoWay,Converter={StaticResource stringToIntConverter}}"/>
@@ -590,7 +590,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <FontIcon Glyph="&#xEB9F;" VerticalAlignment="Bottom" Margin="0,0,8,8"
-                                                      ToolTipService.ToolTip="Image"/>
+                                                      ToolTipService.ToolTip="Image" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
 
                                             <TextBox Header="ID" InputScope="Number" Grid.Column="1"
                                                      Text="{x:Bind Id, Mode=TwoWay,Converter={StaticResource stringToIntConverter}}"/>
@@ -602,7 +602,7 @@
                                                     Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Browse assets"
                                                     Height="32" Margin="0,0,8,0">
 
-                                                <FontIcon Glyph="&#xF12B;"/>
+                                                <FontIcon Glyph="&#xF12B;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
 
                                                 <Button.Tag>
                                                     <dialogs:ImageBrowserDialog SelectedUri="{x:Bind Src,Mode=TwoWay}" />
@@ -827,8 +827,8 @@
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <SymbolIcon Symbol="Font" VerticalAlignment="Bottom" Margin="0,0,8,8"
-                                                        ToolTipService.ToolTip="Text"/>
+                                                <FontIcon Glyph="&#xE8D2;" VerticalAlignment="Bottom" Margin="0,0,8,8"
+                                                        ToolTipService.ToolTip="Text" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
 
                                                 <TextBox Header="ID" InputScope="Number" Grid.Column="1"
                                                      Text="{x:Bind Id, Mode=TwoWay,Converter={StaticResource stringToIntConverter}}"/>
@@ -913,7 +913,7 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <FontIcon Glyph="&#xEB9F;" VerticalAlignment="Bottom" Margin="0,0,8,8"
-                                                      ToolTipService.ToolTip="Image"/>
+                                                      ToolTipService.ToolTip="Image" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
 
                                                 <TextBox Header="ID" InputScope="Number" Grid.Column="1"
                                                      Text="{x:Bind Id, Mode=TwoWay,Converter={StaticResource stringToIntConverter}}"/>
@@ -925,7 +925,7 @@
                                                     Style="{StaticResource SubtleButtonStyle}" ToolTipService.ToolTip="Browse assets"
                                                     Height="32" Margin="0,0,8,0">
 
-                                                    <FontIcon Glyph="&#xF12B;"/>
+                                                    <FontIcon Glyph="&#xF12B;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
 
                                                     <Button.Tag>
                                                         <dialogs:ImageBrowserDialog SelectedUri="{x:Bind Src,Mode=TwoWay}" />
@@ -1020,7 +1020,7 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <FontIcon Glyph="{x:Bind Glyph}" Margin="0,0,8,0" />
+                                    <FontIcon Glyph="{x:Bind Glyph}" Margin="0,0,8,0" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons"/>
                                     <TextBlock Grid.Column="1" Text="{x:Bind Error.Message}" TextWrapping="WrapWholeWords" HorizontalAlignment="Stretch" />
 
                                     <TextBlock Grid.Column="2" HorizontalAlignment="Right" Text="{x:Bind LineNumber}"/>

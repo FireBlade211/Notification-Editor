@@ -49,7 +49,10 @@ namespace FireBlade.NotificationEditor.Pages
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (ApiInformation.IsWriteablePropertyPresent("Windows.UI.Xaml.Controls.MenuFlyoutItem", "Icon"))
-                newItem.Icon = newItem2.Icon = new SymbolIcon(Symbol.Page2);
+                newItem.Icon = newItem2.Icon = new FontIcon
+                {
+                    Glyph = "\uE7C3"
+                };
 
             var dir1 = await(await Package.Current.InstalledLocation
                 .GetFolderAsync("Samples").AsTask())

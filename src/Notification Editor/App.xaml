@@ -391,6 +391,13 @@
                 <Setter Property="FontSize" Value="{StaticResource PivotTitleFontSize}"/>
                 <Setter Property="FontWeight" Value="{StaticResource PivotTitleThemeFontWeight}"/>
             </Style>
+            
+            <!-- These don't work for some reason -->
+            <FontFamily x:Key="SymbolThemeFontFamily">Segoe MDL2 Assets,Segoe Fluent Icons</FontFamily>
+            
+            <Style TargetType="FontIcon">
+                <Setter Property="FontFamily" Value="Segoe MDL2 Assets,Segoe Fluent Icons"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
     

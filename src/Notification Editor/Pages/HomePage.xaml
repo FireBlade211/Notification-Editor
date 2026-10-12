@@ -328,7 +328,7 @@
 
                                 <Button Grid.RowSpan="2" Grid.Column="2" ToolTipService.ToolTip="Rename" Style="{StaticResource SubtleButtonStyle}"
                                         Visibility="Collapsed" x:Name="renameButton">
-                                    <SymbolIcon Symbol="Rename"/>
+                                    <FontIcon Glyph="&#xE8AC;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons" />
 
                                     <Button.Flyout>
                                         <Flyout>
@@ -345,7 +345,7 @@
                                 
                                 <Button Grid.RowSpan="2" Grid.Column="3" ToolTipService.ToolTip="Remove" Style="{StaticResource SubtleButtonStyle}"
                                     x:Name="deleteButton" Visibility="Collapsed" Tag="{x:Bind}" Click="DeleteButton_Click">
-                                    <SymbolIcon Symbol="Delete"/>
+                                    <FontIcon Glyph="&#xE74D;" FontFamily="Segoe MDL2 Assets,Segoe Fluent Icons" />
                                 </Button>
 
                                 <VisualStateManager.VisualStateGroups>

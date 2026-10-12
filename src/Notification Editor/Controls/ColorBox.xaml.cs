@@ -260,7 +260,10 @@ namespace FireBlade.NotificationEditor.Controls
 
                 var button = new Button
                 {
-                    Content = new SymbolIcon(Symbol.More),
+                    Content = new FontIcon
+                    {
+                        Glyph = "\uE712"
+                    },
                     Flyout = new Flyout
                     {
                         Content = _picker

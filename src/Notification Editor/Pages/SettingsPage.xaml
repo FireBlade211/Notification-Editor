@@ -22,6 +22,9 @@
                         <RadioButton Content="Use system setting" x:Name="systemThemeRadio" Checked="SystemThemeRadio_Checked"/>
                         <RadioButton Content="Light"              x:Name="lightThemeRadio"  Checked="SystemThemeRadio_Checked"/>
                         <RadioButton Content="Dark"               x:Name="darkThemeRadio"   Checked="SystemThemeRadio_Checked"/>
+
+                        <ToggleSwitch x:Name="useAcrylicToggle" Toggled="useAcrylicToggle_Toggled"
+                                      Header="Use acrylic background behind Preview Pane" Margin="0,8,0,0"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
@@ -29,13 +32,10 @@
             <PivotItem Header="Preview">
                 <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible">
                     <StackPanel Margin="0,0,0,8">
-                        <ToggleSwitch x:Name="useAcrylicToggle" Toggled="useAcrylicToggle_Toggled"
-                                      Header="Use acrylic background behind Preview Pane"/>
 
                         <!-- NOTE: I can't use a ColorPicker because that's not in 10240 -->
                         <controls:ColorBox Header="Tile background color" x:Name="tileColorBox" ColorChanged="TileColorBox_ColorChanged"
-                             ToolTipService.ToolTip="Specify the live tile background color (using hex or a named color)"
-                             Margin="0,8,0,0"/>
+                             ToolTipService.ToolTip="Specify the live tile background color (using hex or a named color)"/>
 
                         <controls:ColorBox Header="App logo background" Margin="0,8,0,0" ColorChanged="LogoColorBox_ColorChanged"
                              ToolTipService.ToolTip="Specify the background of the app logo" x:Name="logoColorBox"/>

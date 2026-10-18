@@ -1,20 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using NotificationsVisualizerLibrary.Controls;
+﻿using NotificationsVisualizerLibrary.Controls;
 using NotificationsVisualizerLibrary.Model;
 using NotificationsVisualizerLibrary.Model.BaseElements;
 using NotificationsVisualizerLibrary.Parsers;
 using NotificationsVisualizerLibrary.Renderers;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Dynamic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Xml.Linq;
 using Windows.ApplicationModel.Activation;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.UI;
 using Windows.UI.Notifications;
 using Windows.UI.Popups;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,10 +28,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using System.Dynamic;
-using System.Diagnostics;
-using Windows.Foundation.Metadata;
-using Windows.UI.Text;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -92,33 +93,43 @@ namespace NotificationsVisualizerLibrary
         {
             try
             {
+                var menu = new MenuFlyout();
+
+                if (firstItems != null && firstItems.Length > 0)
+                {
+                    foreach (var item in firstItems)
+                    {
+                        menu.Items.Add(item);
+                    }
+
+                    menu.Items.Add(new MenuFlyoutSeparator());
+                }
+
+                menu.Items.Add(new MenuFlyoutItem()
+                {
+                    Text = "Go to notification settings"
+                });
+
+                menu.Items.Add(new MenuFlyoutItem()
+                {
+                    Text = "Turn off notifications for " + Properties?.DisplayName
+                });
+
                 // ContextFlyout was added in Anniversary Update
                 if (ApiInformation.IsPropertyPresent(typeof(UIElement).FullName, nameof(UIElement.ContextFlyout)))
                 {
-                    var menu = new MenuFlyout();
-
-                    if (firstItems != null && firstItems.Length > 0)
-                    {
-                        foreach (var item in firstItems)
-                        {
-                            menu.Items.Add(item);
-                        }
-
-                        menu.Items.Add(new MenuFlyoutSeparator());
-                    }
-
-                    menu.Items.Add(new MenuFlyoutItem()
-                    {
-                        Text = "Go to notification settings"
-                    });
-
-                    menu.Items.Add(new MenuFlyoutItem()
-                    {
-                        Text = "Turn off notifications for " + Properties?.DisplayName
-                    });
-
                     this.ContextFlyout = menu;
                 }
+                else
+                    this.RightTapped += (s, e) =>
+                    {
+                        menu.ShowAt(this, new FlyoutShowOptions
+                        {
+                            Position = e.GetPosition(this),
+                            Placement = FlyoutPlacementMode.RightEdgeAlignedBottom,
+                            ShowMode = FlyoutShowMode.Standard
+                        });
+                    };
             }
             catch
             {

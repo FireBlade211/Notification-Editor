@@ -370,7 +370,9 @@ namespace NotificationsVisualizerLibrary
                 IsExpanded = true;
 
                 MainContainer.CornerRadius    = new CornerRadius(8); // Windows 11 OverlayCornerRadius
-                MainContainer.BorderBrush     = new SolidColorBrush(Color.FromArgb(128, 128, 128, 128));
+                MainContainer.BorderBrush     = new SolidColorBrush(ActualTheme == ElementTheme.Dark
+                    ? Color.FromArgb(128, 128, 128, 128)
+                    : Colors.LightGray);
                 MainContainer.BorderThickness = new Thickness(2);
                 this.FontFamily               = new FontFamily("Segoe UI Variable Text,Segoe UI");
 
@@ -386,10 +388,14 @@ namespace NotificationsVisualizerLibrary
 
                     MainContainer.Background = new AcrylicBrush()
                     {
-                        TintColor = Color.FromArgb(255, 64, 64, 64),
+                        TintColor = ActualTheme == ElementTheme.Light
+                        ? Colors.White
+                        : Color.FromArgb(255, 64, 64, 64),
                         Opacity = 0.96,
                         BackgroundSource = AcrylicBackgroundSource.HostBackdrop,
-                        FallbackColor = Color.FromArgb(255, 64, 64, 64)
+                        FallbackColor = ActualTheme == ElementTheme.Light
+                        ? Colors.White
+                        : Color.FromArgb(255, 64, 64, 64)
                     };
                 }
 
@@ -421,10 +427,14 @@ namespace NotificationsVisualizerLibrary
                 {
                     MainContainer.Background = new AcrylicBrush()
                     {
-                        TintColor = Color.FromArgb(255, 31, 31, 31),
+                        TintColor = ActualTheme == ElementTheme.Light
+                        ? Colors.White
+                        : Color.FromArgb(255, 31, 31, 31),
                         Opacity = 0.8,
                         BackgroundSource = AcrylicBackgroundSource.HostBackdrop,
-                        FallbackColor = Color.FromArgb(255, 31, 31, 31)
+                        FallbackColor = ActualTheme == ElementTheme.Light
+                        ? Colors.White
+                        : Color.FromArgb(255, 31, 31, 31),
                     };
                 }
             }
@@ -551,20 +561,20 @@ namespace NotificationsVisualizerLibrary
                             }
                         }
 
-                        TextBlockTitle.FontFamily = CurrFeatureSet.R_22H2_Style_Toasts ? new FontFamily("Segoe UI Variable Display,Segoe UI")
+                        TextBlockTitle.FontFamily = CurrFeatureSet.R_22H2_Style_Toasts ? new FontFamily("Segoe UI Variable Text,Segoe UI")
                             : new FontFamily("Segoe UI");
+
+                        TextBlockTitle.FontWeight = FontWeights.SemiBold;
 
                         if (CurrFeatureSet.R_22H2_Style_Toasts)
                         {
-                            TextBlockTitle.FontWeight = FontWeights.Normal;
-
                             appLogoBackground.Background = new SolidColorBrush(Colors.Transparent);
                             appLogoBackground.Width = 20;
                             appLogoBackground.Height = 20;
                         }
                         else
                         {
-                            TextBlockTitle.FontWeight = FontWeights.SemiBold;
+                            
                             appLogoBackground.Background = new SolidColorBrush(Properties.BackgroundColor);
                             appLogoBackground.Width = 16;
                             appLogoBackground.Height = 16;
@@ -692,10 +702,10 @@ namespace NotificationsVisualizerLibrary
                         }
 
                         TextBlockHeaderWhenAppLogoPresent.FontFamily = CurrFeatureSet.R_22H2_Style_Toasts ?
-                           new FontFamily("Segoe UI Variable Text,Segoe UI") : new FontFamily("Segoe UI");
+                           new FontFamily("Segoe UI Variable Small,Segoe UI") : new FontFamily("Segoe UI");
 
                         TextBlockHeaderWhenAppLogoNotPresent.FontFamily = CurrFeatureSet.R_22H2_Style_Toasts ?
-                            new FontFamily("Segoe UI Variable Text,Segoe UI")
+                            new FontFamily("Segoe UI Variable Small,Segoe UI")
                             :  new FontFamily("Segoe UI");
 
                         if (toastContent.Header != null)
@@ -774,9 +784,9 @@ namespace NotificationsVisualizerLibrary
                             }
                         }
 
-                        TextBlockAttributionFirstPart.FontFamily = CurrFeatureSet.R_22H2_Style_Toasts ? new FontFamily("Segoe UI Variable Text,Segoe UI")
+                        TextBlockAttributionFirstPart.FontFamily = CurrFeatureSet.R_22H2_Style_Toasts ? new FontFamily("Segoe UI Variable Small,Segoe UI")
                              : this.FontFamily = new FontFamily("Segoe UI");
-                        TextBlockAttributionSecondPart.FontFamily = CurrFeatureSet.R_22H2_Style_Toasts ? new FontFamily("Segoe UI Variable Text,Segoe UI")
+                        TextBlockAttributionSecondPart.FontFamily = CurrFeatureSet.R_22H2_Style_Toasts ? new FontFamily("Segoe UI Variable Small,Segoe UI")
                             : this.FontFamily = new FontFamily("Segoe UI");
 
                         // Attribution

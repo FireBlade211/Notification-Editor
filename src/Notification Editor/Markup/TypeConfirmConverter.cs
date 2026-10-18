@@ -14,7 +14,7 @@ namespace FireBlade.NotificationEditor.Markup
             string language)
         {
             if (value == null)
-                return null;
+                return System.Convert.ChangeType(parameter, targetType);
 
             if (value.GetType() == targetType)
                 return value;
@@ -22,7 +22,7 @@ namespace FireBlade.NotificationEditor.Markup
             if (targetType == typeof(int) && value is string)
                 return int.Parse((string)value);
 
-            return null;
+            return System.Convert.ChangeType(parameter, targetType);
         }
 
         public object ConvertBack(

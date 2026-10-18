@@ -207,7 +207,22 @@ namespace FireBlade.NotificationEditor.Pages
             if (!IsLoaded) return;
 
             xmlBox.Text = XmlContent;
-            _ = MruItem.Update(XmlContent);
+
+            string xml = XmlContent;
+
+            if (DataItems.Any())
+            {
+                var dict = new Dictionary<string, string>();
+
+                foreach (var item in DataItems)
+                    dict[item.Key] = item.Value;
+
+                xml += "<!--NotificationData\r\n\r\n";
+                xml += JsonConvert.SerializeObject(dict, Formatting.Indented);
+                xml += "\r\n-->";
+            }
+
+            _ = MruItem.Update(xml);
         }
 
         private StorageFile OpenedFile = null;
@@ -1749,6 +1764,11 @@ namespace FireBlade.NotificationEditor.Pages
             }
 
             UpdatePreview();
+        }
+
+        private void themeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (IsLoaded) UpdatePreview();
         }
     }
 

@@ -46,9 +46,32 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
-            <ComboBox DisplayMemberPath="DisplayString" ItemsSource="{x:Bind Builds}" SelectedValuePath="LongBuildNumber" MinWidth="160"
-                      Header="OS Build" x:Name="osBuildCombo" Margin="4,0,4,8" SelectedIndex="0" SelectionChanged="OsBuildCombo_SelectionChanged" />
+
+            <StackPanel Orientation="Horizontal">
+                <ComboBox DisplayMemberPath="DisplayString" ItemsSource="{x:Bind Builds}" SelectedValuePath="LongBuildNumber" MinWidth="160"
+                      Header="OS Build" x:Name="osBuildCombo" Margin="4,0,4,8" SelectionChanged="OsBuildCombo_SelectionChanged"/>
+
+                <ComboBox Header="Theme" SelectedValuePath="Tag" x:Name="themeCombo" SelectedIndex="0"
+                          SelectionChanged="themeCombo_SelectionChanged" MinWidth="120">
+                    <ComboBoxItem Content="System">
+                        <ComboBoxItem.Tag>
+                            <ElementTheme>Default</ElementTheme>
+                        </ComboBoxItem.Tag>
+                    </ComboBoxItem>
+                    
+                    <ComboBoxItem Content="Light">
+                        <ComboBoxItem.Tag>
+                            <ElementTheme>Light</ElementTheme>
+                        </ComboBoxItem.Tag>
+                    </ComboBoxItem>
+                    
+                    <ComboBoxItem Content="Dark">
+                        <ComboBoxItem.Tag>
+                            <ElementTheme>Dark</ElementTheme>
+                        </ComboBoxItem.Tag>
+                    </ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
 
             <MenuFlyoutSeparator Margin="0,0,0,8" Grid.Row="1" />
 
@@ -56,24 +79,26 @@
                 <StackPanel Margin="8,0,8,8">
                     <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Desktop" Margin="4,0,0,2"/>
                     <visualizer:PreviewToast x:Name="desktopToast" Margin="0,0,0,12"
-                                     OSBuildNumber="{x:Bind osBuildCombo.SelectedValue, Mode=OneWay, Converter={StaticResource typeConfirmConverter}}"
+                                     RequestedTheme="{x:Bind themeCombo.SelectedValue,Mode=OneWay, Converter={StaticResource typeConfirmConverter}}"
+                                     OSBuildNumber="{x:Bind osBuildCombo.SelectedValue, Mode=OneWay, Converter={StaticResource typeConfirmConverter},ConverterParameter=10240}"
                                      />
 
 
                     <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Mobile" Margin="4,0,0,2"/>
                     <visualizer:PreviewToast x:Name="mobileToast" DeviceFamily="Mobile" Margin="0,0,0,12"
-                                     OSBuildNumber="{x:Bind osBuildCombo.SelectedValue, Mode=OneWay, Converter={StaticResource typeConfirmConverter}}"
+                                     RequestedTheme="{x:Bind themeCombo.SelectedValue,Mode=OneWay,Converter={StaticResource typeConfirmConverter}}"
+                                     OSBuildNumber="{x:Bind osBuildCombo.SelectedValue, Mode=OneWay, Converter={StaticResource typeConfirmConverter},ConverterParameter=10240}"
                                      />
 
 
                     <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Xbox" Margin="4,0,0,2"/>
                     <visualizer:PreviewXboxToast x:Name="xboxToast" Margin="0,0,0,12"
-                                     OSBuildNumber="{x:Bind osBuildCombo.SelectedValue, Mode=OneWay, Converter={StaticResource typeConfirmConverter}}"
+                                     OSBuildNumber="{x:Bind osBuildCombo.SelectedValue, Mode=OneWay, Converter={StaticResource typeConfirmConverter},ConverterParameter=10240}"
                                      />
 
                     <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Xbox (Action Center)" Margin="4,0,0,2"/>
                     <visualizer:PreviewXboxToastInActionCenter x:Name="xboxCenterToast"
-                                    OSBuildNumber="{x:Bind osBuildCombo.SelectedValue, Mode=OneWay, Converter={StaticResource typeConfirmConverter}}"/>
+                                    OSBuildNumber="{x:Bind osBuildCombo.SelectedValue, Mode=OneWay, Converter={StaticResource typeConfirmConverter},ConverterParameter=10240}"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

@@ -64,8 +64,17 @@
             <SolidColorBrush x:Key="ImageSmokeBrush" Color="{ThemeResource SystemChromeBlackLowColor}"/>
             <SolidColorBrush x:Key="GroupViewBackgroundBrush" Color="Transparent"/>
 
-            <SolidColorBrush x:Key="ProgressBarForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
-            <SolidColorBrush x:Key="ProgressTextForegroundBrush" Color="{ThemeResource SystemBaseMediumColor }"/>
+            <SolidColorBrush x:Key="ProgressTextForegroundBrush" Color="{ThemeResource SystemBaseMediumColor}"/>
+
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <SolidColorBrush x:Key="ProgressBarForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="ProgressBarForegroundBrush" Color="{ThemeResource SystemAccentColor}"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">

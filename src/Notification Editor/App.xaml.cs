@@ -452,7 +452,7 @@ namespace FireBlade.NotificationEditor
                 try
                 {
                     var dir  = await KnownFolders.DocumentsLibrary.CreateFolderAsync("Saved Notifications", CreationCollisionOption.OpenIfExists);
-                    var file = await dir.CreateFileAsync(args.FileSavePickerUI.FileName, CreationCollisionOption.GenerateUniqueName);
+                    var file = await dir.CreateFileAsync(args.FileSavePickerUI.FileName, CreationCollisionOption.ReplaceExisting);
 
                     e.Request.TargetFile = file;
 
@@ -460,6 +460,7 @@ namespace FireBlade.NotificationEditor
                     {
                         Token = StorageApplicationPermissions.FutureAccessList.Add(file)
                     });
+
                     await MRUHelper.CleanItems();
                 }
                 finally

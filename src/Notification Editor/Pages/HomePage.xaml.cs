@@ -48,6 +48,11 @@ namespace FireBlade.NotificationEditor.Pages
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            await MRUHelper.CleanItems();
+
+            foreach (var item in MRUHelper.Items)
+                MruItems.Add(item);
+
             if (ApiInformation.IsWriteablePropertyPresent("Windows.UI.Xaml.Controls.MenuFlyoutItem", "Icon"))
                 newItem.Icon = newItem2.Icon = new FontIcon
                 {
@@ -118,11 +123,6 @@ namespace FireBlade.NotificationEditor.Pages
 
                 templatesItem.Items.Add(menuItem);
             }
-
-            await MRUHelper.CleanItems();
-
-            foreach (var item in MRUHelper.Items)
-                MruItems.Add(item);
         }
 
         private async void NewItem_Click(object sender, RoutedEventArgs e)

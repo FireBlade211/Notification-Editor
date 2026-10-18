@@ -33,6 +33,8 @@ namespace FireBlade.NotificationEditor.DataModel
 
         private void OnIdChanged(DependencyPropertyChangedEventArgs args)
         {
+            if (Element is null) return;
+
             try
             {
                 var id = args.NewValue as string;
@@ -67,6 +69,8 @@ namespace FireBlade.NotificationEditor.DataModel
 
         private void OnContentChanged(DependencyPropertyChangedEventArgs args)
         {
+            if (Element is null) return;
+
             try
             {
                 var content = args.NewValue as string;

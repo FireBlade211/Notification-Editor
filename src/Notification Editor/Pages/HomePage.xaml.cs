@@ -119,6 +119,8 @@ namespace FireBlade.NotificationEditor.Pages
                 templatesItem.Items.Add(menuItem);
             }
 
+            await MRUHelper.CleanItems();
+
             foreach (var item in MRUHelper.Items)
                 MruItems.Add(item);
         }
@@ -325,8 +327,46 @@ namespace FireBlade.NotificationEditor.Pages
 
                 if (mru.Type == MruItemType.Toast)
                     MainPage.Current.contentFrame.Navigate(typeof(ToastPage), args, new DrillInNavigationTransitionInfo());
-                else
+                else if (mru.Type == MruItemType.Tile)
                     MainPage.Current.contentFrame.Navigate(typeof(TilePage), args, new DrillInNavigationTransitionInfo());
+                else
+                {
+                    var toastButton = new Button
+                    {
+                        Content = "Toast notification",
+                        Margin = new Thickness(0, 0, 0, 8)
+                    };
+
+                    var tileButton = new Button
+                    {
+                        Content = "Live tile"
+                    };
+
+                    toastButton.Click += (s, ee) => MainPage.Current.contentFrame.Navigate(typeof(ToastPage), args, new DrillInNavigationTransitionInfo());
+                    tileButton.Click += (s, ee) => MainPage.Current.contentFrame.Navigate(typeof(TilePage), args, new DrillInNavigationTransitionInfo());
+
+                    var flyout = new Flyout
+                    {
+                        Content = new StackPanel
+                        {
+                            Children =
+                            {
+                                new TextBlock
+                                {
+                                    Text = "The type of this notification couldn't be determined. " +
+                                    "Please manually choose the type of the notification below.",
+                                    TextWrapping = TextWrapping.WrapWholeWords,
+                                    MaxWidth = 280
+                                },
+                                toastButton,
+                                tileButton
+                            }
+                        }
+                    };
+
+                    if ((sender as ListView).ContainerFromItem(e.ClickedItem) is FrameworkElement element)
+                        flyout.ShowAt(element);
+                }
             }
         }
 

@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="FireBlade.NotificationEditor.Pages.FilePickerBrowserPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FireBlade.NotificationEditor.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:helpers="using:FireBlade.NotificationEditor.Helpers">
+
+    <GridView x:Name="gv" x:FieldModifier="public">
+        <GridView.ItemTemplate>
+            <DataTemplate x:DataType="helpers:MruItem">
+                <Grid Height="150" Width="150" Padding="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Viewbox Width="64" Height="64" Child="{x:Bind Icon}" Margin="0,0,12,0"/>
+
+                    <TextBlock Text="{x:Bind Title}" Grid.Row="1" TextTrimming="CharacterEllipsis" Style="{StaticResource BaseTextBlockStyle}"/>
+                    <TextBlock Text="{x:Bind DateModifiedString}" Grid.Row="2" TextTrimming="CharacterEllipsis"
+                               Style="{StaticResource CaptionTextBlockStyle}"/>
+                </Grid>
+            </DataTemplate>
+        </GridView.ItemTemplate>
+    </GridView>
+</Page>

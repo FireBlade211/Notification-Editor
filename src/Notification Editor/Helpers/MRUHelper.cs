@@ -12,6 +12,7 @@ using Windows.Foundation.Metadata;
 using Newtonsoft.Json.Converters;
 using Windows.UI.Xaml.Controls;
 using System.ComponentModel;
+using Windows.Data.Xml.Dom;
 
 namespace FireBlade.NotificationEditor.Helpers
 {
@@ -29,6 +30,7 @@ namespace FireBlade.NotificationEditor.Helpers
                 var file = await ApplicationData.Current.LocalFolder.GetFileAsync("mru.json");
 
                 Items = JsonConvert.DeserializeObject<List<MruItem>>(await FileIO.ReadTextAsync(file));
+                await CleanItems();
             }
             catch (FileNotFoundException)
             {
@@ -73,6 +75,7 @@ namespace FireBlade.NotificationEditor.Helpers
 
         public static async Task CleanItems()
         {
+            // Remove old items.
             if (Items.Count > 15)
             {
                 for (int i = Items.Count - 1; i >= 15; i--)
@@ -81,6 +84,35 @@ namespace FireBlade.NotificationEditor.Helpers
                 }
             }
 
+            // Determine the types of indeterminate items.
+            foreach (var item in Items.Where(x => x.Type == MruItemType.Indeterminate))
+            {
+                try
+                {
+                    if (!string.IsNullOrEmpty(item.Token) && StorageApplicationPermissions.FutureAccessList.ContainsItem(item.Token))
+                    {
+                        var file = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(item.Token);
+                        item.Xml = await FileIO.ReadTextAsync(file);
+                    }
+
+                    var doc = new XmlDocument();
+                    doc.LoadXml(item.Xml);
+
+                    if (doc.DocumentElement != null)
+                    {
+                        if (doc.DocumentElement.NodeName.Equals("toast", StringComparison.OrdinalIgnoreCase))
+                            item.Type = MruItemType.Toast;
+                        else if (doc.DocumentElement.NodeName.Equals("tile", StringComparison.OrdinalIgnoreCase))
+                            item.Type = MruItemType.Tile;
+                    }
+                }
+                catch
+                {
+                    
+                }
+            }
+
+            // Add to the jump list.
             if (App.IsUniversalContractV2Present)
             {
                 if (JumpList.IsSupported())
@@ -88,7 +120,8 @@ namespace FireBlade.NotificationEditor.Helpers
                     var list = await JumpList.LoadCurrentAsync();
                     foreach (var item in Items)
                     {
-                        var found = list.Items.FirstOrDefault(x => Guid.TryParse(x.Arguments.Substring("mru:".Length), out Guid id) && id == item.Id);
+                        var found = list.Items.FirstOrDefault(x => Guid.TryParse(x.Arguments.Substring("mru:".Length), out Guid id)
+                            && id == item.Id);
 
                         if (found != null && found.RemovedByUser)
                             await item.Remove();
@@ -96,6 +129,7 @@ namespace FireBlade.NotificationEditor.Helpers
                 }
             }
 
+            // Sort items.
             Items = Items.OrderByDescending(x => x.DateModified).ToList();
         }
 
@@ -105,7 +139,8 @@ namespace FireBlade.NotificationEditor.Helpers
             {
                 await CleanItems();
 
-                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("mru.json", CreationCollisionOption.OpenIfExists);
+                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("mru.json",
+                    CreationCollisionOption.OpenIfExists);
 
                 await FileIO.WriteTextAsync(file, JsonConvert.SerializeObject(Items, Formatting.Indented));
             }
@@ -181,7 +216,7 @@ namespace FireBlade.NotificationEditor.Helpers
         [JsonIgnore]
         public IconElement Icon => new FontIcon
         {
-            Glyph = Type == MruItemType.Tile ? "\uECA5" : "\uE7E7"
+            Glyph = Type == MruItemType.Tile ? "\uECA5" : Type == MruItemType.Toast ? "\uE7E7" : "\uE897"
         };
 
         [JsonProperty("xml")]
@@ -209,7 +244,9 @@ namespace FireBlade.NotificationEditor.Helpers
                 if (JumpList.IsSupported())
                 {
                     var list = await JumpList.LoadCurrentAsync();
-                    var found = list.Items.FirstOrDefault(x => Guid.TryParse(x.Arguments.Substring("mru:".Length), out Guid id) && id == Id);
+                    var found = list.Items.FirstOrDefault(x => Guid.TryParse(x.Arguments.Substring("mru:".Length),
+                        out Guid id)
+                    && id == Id);
 
                     if (found != null)
                         list.Items.Remove(found);
@@ -238,7 +275,8 @@ namespace FireBlade.NotificationEditor.Helpers
 
                     list.SystemGroupKind = JumpListSystemGroupKind.Recent;
 
-                    var found = list.Items.FirstOrDefault(x => Guid.TryParse(x.Arguments.Substring("mru:".Length), out Guid id) && id == Id);
+                    var found = list.Items.FirstOrDefault(x => Guid.TryParse(x.Arguments.Substring("mru:".Length), out Guid id)
+                    && id == Id);
                     if (found != null)
                     {
                         list.Items.Remove(found);
@@ -249,7 +287,8 @@ namespace FireBlade.NotificationEditor.Helpers
                         var item = JumpListItem.CreateWithArguments("mru:" + Id.ToString("D"), Title);
 
                         item.GroupName = "Recent";
-                        item.Logo = Type == MruItemType.Toast ? new Uri("ms-appx:///Assets/MDL2/toast.png") : new Uri("ms-appx:///Assets/MDL2/tile.png");
+                        item.Logo = Type == MruItemType.Toast ? new Uri("ms-appx:///Assets/MDL2/toast.png") : 
+                            new Uri("ms-appx:///Assets/MDL2/tile.png");
                         
                         if (!string.IsNullOrEmpty(Token) && StorageApplicationPermissions.FutureAccessList.ContainsItem(Token))
                         {
@@ -278,7 +317,18 @@ namespace FireBlade.NotificationEditor.Helpers
 
     public enum MruItemType
     {
+        /// <summary>
+        /// The MRU entry is a live tile.
+        /// </summary>
         Tile,
-        Toast
+        /// <summary>
+        /// The MRU entry is a toast notification.
+        /// </summary>
+        Toast,
+        /// <summary>
+        /// The type of the MRU entry hasn't been determined yet. The type will be determined when the <see cref="MRUHelper.CleanItems"/>
+        /// functions is called.
+        /// </summary>
+        Indeterminate
     }
 }

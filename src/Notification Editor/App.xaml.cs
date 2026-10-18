@@ -15,6 +15,10 @@ using System.Text;
 using FireBlade.NotificationEditor.Helpers;
 using Windows.Foundation.Metadata;
 using Windows.Storage.AccessCache;
+using System.Threading.Tasks;
+using FireBlade.NotificationEditor.Pages;
+using System.Collections.Generic;
+using Windows.Storage.Pickers.Provider;
 
 namespace FireBlade.NotificationEditor
 {
@@ -23,7 +27,8 @@ namespace FireBlade.NotificationEditor
     /// </summary>
     sealed partial class App : Application
     {
-        public static readonly bool IsUniversalContractV2Present = ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 2);
+        public static readonly bool IsUniversalContractV2Present = ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract",
+            2);
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -131,12 +136,13 @@ namespace FireBlade.NotificationEditor
             return item;
         }
 
-        private async System.Threading.Tasks.Task ReceiveShareData(string xml, ShareTargetActivatedEventArgs args, StorageFile file = null)
+        private async Task ReceiveShareData(string xml, ShareTargetActivatedEventArgs args, StorageFile file = null)
         {
             args.ShareOperation.ReportDataRetrieved();
             try
             {
                 await SettingsHelper.InitAsync();
+                await MRUHelper.InitAsync();
 
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(xml, new XmlLoadSettings
@@ -184,7 +190,7 @@ namespace FireBlade.NotificationEditor
                     if (file != null)
                         a.MruItem = await MRUHelper.FindOrCreateForFileAsync(file, toast ? MruItemType.Toast : MruItemType.Tile);
                     else
-                        a.MruItem = MRUHelper.Items.FirstOrDefault(x => x.Xml.Equals(xml, StringComparison.OrdinalIgnoreCase)) // this will prob be really slow
+                        a.MruItem = MRUHelper.Items.FirstOrDefault(x => x.Xml.Equals(xml, StringComparison.OrdinalIgnoreCase))
                             ?? CreateMruItem((toast ? "Toast" : "Tile") + " Received via Share", toast ? MruItemType.Toast : MruItemType.Tile);
 
                     rootFrame.Navigate(typeof(MainPage), new MainPageNavigationArgs(a, toast));
@@ -213,6 +219,7 @@ namespace FireBlade.NotificationEditor
         private async void OnToastActivated(ToastNotificationActivatedEventArgs args)
         {
             await SettingsHelper.InitAsync();
+            await MRUHelper.InitAsync();
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -274,7 +281,7 @@ namespace FireBlade.NotificationEditor
                 ulong version = ulong.Parse(AnalyticsInfo.VersionInfo.DeviceFamilyVersion);
 
                 int build = (int)((version >> 16) & 0xFFFF);
-
+                
                 if (build >= 14393)
                 {
                     StringBuilder sb = new StringBuilder();
@@ -287,7 +294,8 @@ namespace FireBlade.NotificationEditor
                         // column
                         sb.AppendLine("<subgroup>");
 
-                        sb.AppendLine($"<text>{EscapeXml(kvp.Key)}</text>");
+                        sb.AppendLine($"<text hint-style=\"body\">{EscapeXml(kvp.Key)}</text>");
+                        sb.AppendLine($"<text hint-style=\"body\" hint-align=\"right\">{EscapeXml(kvp.Value.ToString())}</text>");
 
                         sb.AppendLine("</subgroup>");
 
@@ -341,6 +349,124 @@ namespace FireBlade.NotificationEditor
 
                 notifier.Show(notification);
             }
+        }
+
+        protected async override void OnFileOpenPickerActivated(FileOpenPickerActivatedEventArgs args)
+        {
+            base.OnFileOpenPickerActivated(args);
+
+            await MRUHelper.InitAsync();
+
+            var page = new FilePickerBrowserPage();
+
+            if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
+            {
+                //TODO: Load state from previously suspended application
+            }
+
+            // Place the frame in the current Window
+            Window.Current.Content = page;
+
+            Dictionary<MruItem, StorageFile> files = new Dictionary<MruItem, StorageFile>();
+
+            foreach (var item in MRUHelper.Items)
+            {
+                // Note: There's a max of 15 items on the MRU list, and temp files are only created for ones without files anyway
+                if (string.IsNullOrEmpty(item.Token) || !StorageApplicationPermissions.FutureAccessList.ContainsItem(item.Token))
+                {
+                    var file = await ApplicationData.Current
+                        .TemporaryFolder
+                        .CreateFileAsync(
+                            $"Notification.{item.Id}.xml", // this is a guid
+                            CreationCollisionOption.GenerateUniqueName);
+
+                    await FileIO.WriteTextAsync(file, item.Xml);
+
+                    // Note: We hope Windows will clean up the temp file later
+                    files[item] = file;
+                }
+            }
+
+            page.gv.ItemsSource = MRUHelper.Items.ToArray();
+            page.gv.SelectionMode = args.FileOpenPickerUI.SelectionMode == FileSelectionMode.Single
+                ? ListViewSelectionMode.Single : ListViewSelectionMode.Extended;
+            page.gv.SelectionChanged += async (s, e) =>
+            {
+                foreach (var item in e.AddedItems.OfType<MruItem>())
+                {
+                    if (!string.IsNullOrEmpty(item.Token) && StorageApplicationPermissions.FutureAccessList.ContainsItem(item.Token))
+                    {
+                        var file = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(item.Token);
+
+                        if (args.FileOpenPickerUI.CanAddFile(file))
+                            args.FileOpenPickerUI.AddFile(item.Id.ToString(), file);
+                    }
+                    else if (files.TryGetValue(item, out var file) && args.FileOpenPickerUI.CanAddFile(file))
+                        args.FileOpenPickerUI.AddFile(item.Id.ToString(), file);
+                }
+
+                foreach (var item in e.RemovedItems.OfType<MruItem>())
+                    if (args.FileOpenPickerUI.ContainsFile(item.Id.ToString()))
+                        args.FileOpenPickerUI.RemoveFile(item.Id.ToString());
+            };
+        }
+
+        protected async override void OnFileSavePickerActivated(FileSavePickerActivatedEventArgs args)
+        {
+            base.OnFileSavePickerActivated(args);
+
+            await MRUHelper.InitAsync();
+
+            var page = new FilePickerBrowserPage();
+
+            if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
+            {
+                //TODO: Load state from previously suspended application
+            }
+
+            // Place the frame in the current Window
+            Window.Current.Content = page;
+            
+            page.gv.ItemsSource = MRUHelper.Items.ToArray();
+            page.gv.SelectionMode = ListViewSelectionMode.Single;
+            page.gv.SelectionChanged += (s, e) =>
+            {
+                if (page.gv.SelectedItem != null)
+                    // i assume this includes the . before the file ext
+                    args.FileSavePickerUI.TrySetFileName((page.gv.SelectedItem as MruItem).Title + args.FileSavePickerUI.AllowedFileTypes.First());
+            };
+
+            args.FileSavePickerUI.FileNameChanged += (s, e) =>
+            {
+                string n = System.IO.Path.GetFileNameWithoutExtension(args.FileSavePickerUI.FileName);
+
+                // Note: If this doesn't match, the item will get deselected
+                // (The Title is the display name of the file, or "Untitled Toast" / "Untitled Tile", or it can also be user-customized)
+                page.gv.SelectedItem = MRUHelper.Items.FirstOrDefault(x => x.Title.Equals(n, StringComparison.OrdinalIgnoreCase));
+            };
+
+            args.FileSavePickerUI.TargetFileRequested += async (s, e) =>
+            {
+                var deferral = e.Request.GetDeferral();
+
+                try
+                {
+                    var dir  = await KnownFolders.DocumentsLibrary.CreateFolderAsync("Saved Notifications", CreationCollisionOption.OpenIfExists);
+                    var file = await dir.CreateFileAsync(args.FileSavePickerUI.FileName, CreationCollisionOption.GenerateUniqueName);
+
+                    e.Request.TargetFile = file;
+
+                    MRUHelper.Items.Add(new MruItem(file.DisplayName, MruItemType.Indeterminate)
+                    {
+                        Token = StorageApplicationPermissions.FutureAccessList.Add(file)
+                    });
+                    await MRUHelper.CleanItems();
+                }
+                finally
+                {
+                    deferral.Complete();
+                }
+            };
         }
 
         /// <summary>

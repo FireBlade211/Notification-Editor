@@ -22,6 +22,7 @@ using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -41,6 +42,7 @@ namespace FireBlade.NotificationEditor.Pages
 
             versionBlock.Text = $"Version {Package.Current.Id.Version.Major}.{Package.Current.Id.Version.Minor}";
             useAcrylicToggle.IsEnabled = ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5);
+            revealButtonBox.IsEnabled = ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5);
 
             InitControls();
             _ = InitImages();
@@ -48,6 +50,8 @@ namespace FireBlade.NotificationEditor.Pages
 
         private void InitControls()
         {
+            _lockUpdatingControls = true;
+
             switch (SettingsHelper.Current.Theme)
             {
                 case ElementTheme.Default:
@@ -70,6 +74,9 @@ namespace FireBlade.NotificationEditor.Pages
             showNameOnLargeLogoCheck.IsChecked = SettingsHelper.Current.PreviewSettings.ShowNameOnSquare310x310Logo;
 
             useAcrylicToggle.IsOn = SettingsHelper.Current.PreviewSettings.ShowAcrylicPaneBackground;
+            revealButtonBox.IsChecked = SettingsHelper.Current.UseRevealButtons;
+
+            _lockUpdatingControls = false;
         }
 
         private async Task InitImages()
@@ -317,6 +324,22 @@ namespace FireBlade.NotificationEditor.Pages
         private void useAcrylicToggle_Toggled(object sender, RoutedEventArgs e)
         {
             SettingsHelper.Current.PreviewSettings.ShowAcrylicPaneBackground = useAcrylicToggle.IsOn;
+        }
+
+        private bool _lockUpdatingControls = false;
+
+        private void revealButtonBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (_lockUpdatingControls) return;
+
+            SettingsHelper.Current.UseRevealButtons = revealButtonBox.IsChecked == true;
+            revealButtonsRestartPanel.Visibility = Visibility.Visible;
+        }
+
+        private async void revealButtonsRestartButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Note: The restart prompt is only visible on 1709+ anyway, so we can use this
+            await CoreApplication.RequestRestartAsync(string.Empty);
         }
     }
 }

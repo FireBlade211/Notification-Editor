@@ -50,6 +50,12 @@ namespace FireBlade.NotificationEditor
             await SettingsHelper.InitAsync();
             await MRUHelper.InitAsync();
 
+            if (SettingsHelper.Current.UseRevealButtons && ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
+                Resources.Add(typeof(Button), new Style(typeof(Button))
+                {
+                    BasedOn = Resources["ButtonRevealStyle"] as Style
+                });
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

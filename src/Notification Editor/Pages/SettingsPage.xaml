@@ -25,6 +25,15 @@
 
                         <ToggleSwitch x:Name="useAcrylicToggle" Toggled="useAcrylicToggle_Toggled"
                                       Header="Use acrylic background behind Preview Pane" Margin="0,8,0,0"/>
+                        <CheckBox x:Name="revealButtonBox" Content="Use Reveal-styled buttons"
+                                  Checked="revealButtonBox_Checked" Unchecked="revealButtonBox_Checked"/>
+
+                        <StackPanel Orientation="Horizontal" x:Name="revealButtonsRestartPanel" Visibility="Collapsed">
+                            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="You need to restart the app to apply these changes."
+                                       TextWrapping="WrapWholeWords" VerticalAlignment="Center"/>
+                            <Button Content="Restart now" x:Name="revealButtonsRestartButton" Click="revealButtonsRestartButton_Click"
+                                    Margin="8,0,0,0" Style="{StaticResource SubtleButtonStyle}"/>
+                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>

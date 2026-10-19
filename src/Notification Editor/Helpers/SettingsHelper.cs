@@ -51,6 +51,9 @@ namespace FireBlade.NotificationEditor.Helpers
         [JsonConverter(typeof(StringEnumConverter))]
         public ElementTheme Theme { get; set; } = ElementTheme.Default;
 
+        [JsonProperty("useRevealButtons")]
+        public bool UseRevealButtons { get; set; } = false;
+
         [JsonProperty("previewSettings")]
         public PreviewSettings PreviewSettings { get; set; } = new PreviewSettings();
 

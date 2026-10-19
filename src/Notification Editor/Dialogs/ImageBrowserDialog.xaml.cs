@@ -237,6 +237,9 @@ namespace FireBlade.NotificationEditor.Dialogs
             foreach (var file in await dir.GetFilesAsync())
             {
                 if (file.Name.StartsWith("BadgeLogo", StringComparison.OrdinalIgnoreCase)) continue;
+                if (file.Name.StartsWith("White", StringComparison.OrdinalIgnoreCase)) continue;
+                if (ActualTheme == ElementTheme.Light && file.Name.EndsWith("theme-dark.png", StringComparison.OrdinalIgnoreCase)) continue;
+                if (ActualTheme == ElementTheme.Dark && file.Name.EndsWith("theme-light.png", StringComparison.OrdinalIgnoreCase)) continue;
 
                 if (file.FileType.Equals(".png", StringComparison.OrdinalIgnoreCase) || file.FileType.Equals(".jpg", StringComparison.OrdinalIgnoreCase)
                     || file.FileType.Equals(".jpeg", StringComparison.OrdinalIgnoreCase))

@@ -295,10 +295,18 @@ namespace FireBlade.NotificationEditor.Pages
                 BackgroundColor = SettingsHelper.Current.PreviewSettings.LogoBackground
             };
 
+            var xboxProps = new PreviewToastProperties
+            {
+                DisplayName = SettingsHelper.Current.PreviewSettings.AppDisplayName,
+                Square44x44Logo = await SettingsPage.GetImageAsync(SettingsHelper.Current.PreviewSettings.Square44x44Logo) ??
+                new BitmapImage(new Uri("ms-appx:///Assets/WhiteSquare44x44Logo.png")),
+                BackgroundColor = SettingsHelper.Current.PreviewSettings.LogoBackground
+            };
+
             desktopToast.Properties = props;
             mobileToast.Properties = props;
-            xboxToast.Properties = props;
-            xboxCenterToast.Properties = props;
+            xboxToast.Properties = xboxProps;
+            xboxCenterToast.Properties = xboxProps;
 
             UpdatePreview();
             ulong version = ulong.Parse(
@@ -1766,9 +1774,26 @@ namespace FireBlade.NotificationEditor.Pages
             UpdatePreview();
         }
 
-        private void themeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void themeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (IsLoaded) UpdatePreview();
+            if (!IsLoaded) return;
+
+            ElementTheme theme = (ElementTheme)themeCombo.SelectedValue;
+            
+            var props = new PreviewToastProperties
+            {
+                DisplayName = SettingsHelper.Current.PreviewSettings.AppDisplayName,
+                Square44x44Logo = await SettingsPage.GetImageAsync(SettingsHelper.Current.PreviewSettings.Square44x44Logo) ??
+                    new BitmapImage(theme == ElementTheme.Dark 
+                        ? new Uri("ms-appx:///Assets/WhiteSquare44x44Logo.png")
+                        : new Uri("ms-appx:///Assets/Square44x44Logo.png")),
+                BackgroundColor = SettingsHelper.Current.PreviewSettings.LogoBackground
+            };
+
+            desktopToast.Properties = props;
+            mobileToast.Properties = props;
+
+            UpdatePreview();
         }
     }
 

@@ -1,34 +1,36 @@
-﻿using Windows.UI.Notifications;
+﻿using FireBlade.NotificationEditor.DataModel;
+using FireBlade.NotificationEditor.Helpers;
+using NotificationsVisualizerLibrary;
+using NotificationsVisualizerLibrary.Parsers;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.Contacts;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.Resources.Core;
+using Windows.Data.Xml.Dom;
+using Windows.Foundation.Metadata;
+using Windows.Graphics.Imaging;
+using Windows.Storage;
+using Windows.Storage.AccessCache;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
+using Windows.System;
+using Windows.System.Profile;
+using Windows.UI;
+using Windows.UI.Notifications;
+using Windows.UI.StartScreen;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using System.Collections.Generic;
-using NotificationsVisualizerLibrary;
-using Windows.Data.Xml.Dom;
-using Windows.System.Profile;
-using System.Linq;
-using Windows.Storage;
-using System;
-using Windows.ApplicationModel.DataTransfer;
-using NotificationsVisualizerLibrary.Parsers;
-using FireBlade.NotificationEditor.DataModel;
-using System.Threading.Tasks;
-using Windows.Storage.Pickers;
-using Windows.UI.ViewManagement;
-using Windows.UI.StartScreen;
-using FireBlade.NotificationEditor.Helpers;
-using System.Collections.ObjectModel;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.Storage.Streams;
-using Windows.Graphics.Imaging;
-using System.IO;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI;
-using Windows.System;
-using Windows.Foundation.Metadata;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.Storage.AccessCache;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -272,20 +274,22 @@ namespace FireBlade.NotificationEditor.Pages
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            // NOTE: We have copies of the light versions of all the logos named White because UWP won't let us
+            // force "imageName.theme-dark.png" unless we also force the scale
             ImageSource square44x44Logo = await SettingsPage.GetImageAsync(SettingsHelper.Current.PreviewSettings.Square44x44Logo)
-                ?? new BitmapImage(new Uri("ms-appx:///Assets/Square44x44Logo.png"));
+                ?? new BitmapImage(new Uri("ms-appx:///Assets/WhiteSquare44x44Logo.png"));
 
             ImageSource square71x71Logo = await SettingsPage.GetImageAsync(SettingsHelper.Current.PreviewSettings.Square71x71Logo)
-                ?? new BitmapImage(new Uri("ms-appx:///Assets/SmallTile.png"));
+                ?? new BitmapImage(new Uri("ms-appx:///Assets/WhiteSmallTile.png"));
 
             ImageSource square150x150Logo = await SettingsPage.GetImageAsync(SettingsHelper.Current.PreviewSettings.Square150x150Logo)
-                ?? new BitmapImage(new Uri("ms-appx:///Assets/Square150x150Logo.png"));
+                ?? new BitmapImage(new Uri("ms-appx:///Assets/WhiteSquare150x150Logo.png"));
 
             ImageSource wide310x150Logo = await SettingsPage.GetImageAsync(SettingsHelper.Current.PreviewSettings.Wide310x150Logo)
-                ?? new BitmapImage(new Uri("ms-appx:///Assets/Wide310x150Logo.png"));
+                ?? new BitmapImage(new Uri("ms-appx:///Assets/WhiteWide310x150Logo.png"));
 
             ImageSource square310x310Logo = await SettingsPage.GetImageAsync(SettingsHelper.Current.PreviewSettings.Square310x310Logo)
-                ?? new BitmapImage(new Uri("ms-appx:///Assets/LargeTile.png"));
+                ?? new BitmapImage(new Uri("ms-appx:///Assets/WhiteLargeTile.png"));
 
             foreach (var preview in new[] { desktopSmallTile, desktopMediumTile, desktopWideTile, desktopLargeTile, mobileSmallTile,
                     mobileMediumTile, mobileWideTile, mobileLargeTile, tabletSmallTile, tabletMediumTile, tabletWideTile, tabletLargeTile })
